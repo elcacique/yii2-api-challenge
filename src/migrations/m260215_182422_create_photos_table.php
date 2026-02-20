@@ -16,7 +16,7 @@ class m260215_182422_create_photos_table extends Migration
             'id' => $this->primaryKey(),
             'album_id' => $this->integer()->notNull(),
             'title' => $this->string(255)->notNull(),
-            'url' => $this->string(255)->notNull(),
+//            'url' => $this->string(255)->notNull(),
         ]);
         $this->addForeignKey(
             'fk-photos-album_id',

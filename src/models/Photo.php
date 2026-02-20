@@ -17,8 +17,6 @@ use yii\db\ActiveQuery;
  */
 class Photo extends \yii\db\ActiveRecord
 {
-
-
     /**
      * {@inheritdoc}
      */
@@ -33,11 +31,17 @@ class Photo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['album_id', 'title', 'url'], 'required'],
+            [['album_id', 'title'], 'required'],
             [['album_id'], 'default', 'value' => null],
             [['album_id'], 'integer'],
             [['title', 'url'], 'string', 'max' => 255],
-            [['album_id'], 'exist', 'skipOnError' => true, 'targetClass' => Albums::class, 'targetAttribute' => ['album_id' => 'id']],
+            [
+                ['album_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Album::class,
+                'targetAttribute' => ['album_id' => 'id']
+            ],
         ];
     }
 
@@ -54,14 +58,9 @@ class Photo extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[Album]].
-     *
-     * @return ActiveQuery
-     */
-    public function getAlbum(): ActiveQuery
+    public function getUrl(): string
     {
-        return $this->hasOne(Album::class, ['id' => 'album_id']);
+        return 'http://localhost/uploads/' . rand(1, 5) . '.jpg';
     }
 
 }
