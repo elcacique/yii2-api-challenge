@@ -3,6 +3,7 @@ git clone git@github.com:elcacique/yii2-api-challenge.git
 
 ## Install
 cd yii2-api-challenge
+cp .env.example .env
 docker compose up -d
 docker compose run composer install
 
